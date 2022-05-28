@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="livechat" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Live Chat Configuration</label>
+            <tab>general</tab>
+			<resource>Aligent_Assignment::config_assignment</resource>
+				<group id="general" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Live Chat</label>
+					<field id="license" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+						<label>Live chat License</label>
+						<validate>required-entry</validate>
+					</field>
+				</group>
+				<group id="advanced" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Live Chat group</label>
+					<field id="group" translate="label"   type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+						<label>Group</label>
+						<validate>validate-number</validate>
+						<validate>required-entry</validate>
+					</field>
+					<field id="params" translate="label" validate-number required-entry type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+						<label>Params</label>
+						<validate>validate-number</validate>
+						<validate>required-entry</validate>
+					</field>
+				</group>
+        </section>
+    </system>
+</config>
