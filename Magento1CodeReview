@@ -1,0 +1,51 @@
+<?php
+public function postAction() {
+ //avoid notices warnings
+ $livechat_license_number = $_POST['livechat_license_number'];
+ $livechat_groups = $_POST['livechat_groups'];
+ $livechat_params = $_POST['livechat_params'];
+ 
+ // As per this code I am assuming, this code is saving the value to core_config data in system config
+ // Also, If i am assuming the value is coming from form action then getting the  
+ // we don't need to use the select, insert, update query to save the data in corr_config table
+ // we have predefined magento model which can use to save and update the value
+ // For 11 to 39 code we can use below mentioned code
+  
+ Mage::getModel('core/config')->saveConfig('livechat/general/license', $livechat_license_number, 'default', 0);
+ Mage::getModel('core/config')->saveConfig('livechat/advanced/group', $livechat_groups, 'default', 0);
+ Mage::getModel('core/config')->saveConfig('livechat/advanced/params', $livechat_params, 'default', 0);
+ 
+ $config_table = Mage::getSingleton('core/resource')->getTableName('core_config_data');
+ $read = Mage::getSingleton('core/resource')->getConnection('core_read');
+ $query = 'SELECT * FROM ' . $config_table;
+ $query .= ' WHERE scope="default" AND scope_id=0 AND path="livechat/general/license"';
+ $results = $read->fetchAll($query);
+ $write = Mage::getSingleton('core/resource')->getConnection('core_write');
+ //check for existing configurations
+ if ($row = array_pop($results)) {
+ $license_id = $row['config_id'];
+ $query = 'UPDATE ' . $config_table;
+ $query .= ' SET value="' . $livechat_license_number . '"';
+ $query .= ' WHERE config_id=' . $license_id;
+ $write->query($query);
+ $query = 'UPDATE ' . $config_table;
+ $query .= ' SET value="' . $livechat_groups . '"';
+ $query .= ' WHERE config_id=' . ++$license_id;
+ $write->query($query)
+ $query = 'UPDATE ' . $config_table;
+ $query .= ' SET value="' . $livechat_params . '"';
+ $query .= ' WHERE config_id=' . ++$license_id;
+ $write->query($query);
+ } else {
+ $query = 'INSERT INTO ' . $config_table;
+ $query .= ' (scope, scope_id, path, value)';
+ $query .= ' VALUES ("default", 0, "livechat/general/license", "' . $livechat_license_number . '"),';
+ $query .= ' ("default", 0, "livechat/advanced/group", "0"),';
+ $query .= ' ("default", 0, "livechat/advanced/params", "")';
+ $write->query($query);
+ }
+ // Refresh the config.
+ Mage::getConfig()->cleanCache();
+ Mage::getConfig()->reinit();
+ $this->_redirect('*/*/index');
+}
