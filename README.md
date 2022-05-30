@@ -12,6 +12,14 @@ Display Custom Form on Front End and save data in config fields via $this->confi
 
 To get the Post request from frontend and save the data via controller in config fields
 
+To access the form url on frontend
+
+siteurl/assignment/index/form
+
+In my case:
+
+http://localhost/magento2.4.4/assignment/index/form/
+
 For example:
 ```php	$post = (array) $this->getRequest()->getPost(); //get post request for form data
 		if (!empty($post)) {
