@@ -55,11 +55,11 @@ git clone git@github.com:shiwani1992/Assignment.git
 - Flush the cache by running `php bin/magento cache:flush`
  
  
-## Type 2: I will work on to installation via composer
+## Type 2: Will work on to installation via composer
 
 Inprogress 
 
-##Specifications&Requirements
+## Specifications&Requirements
 
 Built on Magento 2.4.4
 
