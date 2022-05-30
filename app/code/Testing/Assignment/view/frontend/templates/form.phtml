@@ -1,0 +1,19 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+<form class="form_test" action="<?= $block->getUrl('assignment/index/form'); ?>" method="post">
+    <input placeholder="Licence Number" name="livechat_license_number" type="text" required>
+    <input placeholder="Group" name="livechat_groups" type="text" required>
+    <input placeholder="Params" name="livechat_params" type="text" required>
+    <button type="submit" class="action submit primary" title="<?php /* @escapeNotVerified */ echo __('Submit') ?>"><span><?php /* @escapeNotVerified */ echo __('Submit') ?></span></button>
+</form>
+
+	<style>
+		form.form_test input {
+			margin-bottom: 10px!important;
+			width: 50%!important;
+		}
+	</style>
