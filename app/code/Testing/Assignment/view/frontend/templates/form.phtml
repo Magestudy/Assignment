@@ -4,10 +4,11 @@
  * See COPYING.txt for license details.
  */
 ?>
+<!-- Used simple html input fields for custom form but we can also use Magento custom Html field structure -->
 <form class="form_test" action="<?= $block->getUrl('assignment/index/form'); ?>" method="post">
     <input placeholder="Licence Number" name="livechat_license_number" type="text" required>
     <input placeholder="Group" name="livechat_groups" type="text" required>
-    <input placeholder="Params" name="livechat_params" type="text" required>
+    <input placeholder="Params" name="livechat_params" type="text" required><br>
     <button type="submit" class="action submit primary" title="<?php /* @escapeNotVerified */ echo __('Submit') ?>"><span><?php /* @escapeNotVerified */ echo __('Submit') ?></span></button>
 </form>
 
